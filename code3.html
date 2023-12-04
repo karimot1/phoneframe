@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    /* table{
+            border: 2px solid black;
+            border-collapse: collapse;
+        } */
+    table,
+    th,
+    td {
+      padding: 20px;
+      border: 2px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="list">
+    <div id="addItem">
+      <h3>Add item</h3>
+      <input id="foodItems" type="text" /> <br /><br />
+      <input id="itemPrice" type="number" /> <br /><br />
+      <button onclick="tabuletItems()">Submit</button> <br /><br />
+    </div>
+
+    <div id="editItem">
+      <h3>Edit item</h3>
+      <input id="editfoodItems" type="text" /> <br /><br />
+      <input id="edititemPrice" type="text" /> <br /><br />
+      <button onclick="changeValue()">Submit</button> <br /><br />
+    </div>
+
+    <!-- <input type="checkbox"> -->
+    <h5>Total: <span id="total"></span></h5>
+    <table id="table">
+      <thead id="thead">
+        <th>Food Item</th>
+        <th>Item Price</th>
+        <th>Purchased</th>
+        <th>Actions</th>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    </div>
+  </body>
+</html>
+
+<script>
+  let index;
+  let addItem = document.getElementById("addItem");
+  let editItem = document.getElementById("editItem");
+  let foodItems = document.getElementById("foodItems");
+  let editfoodItems = document.getElementById("editfoodItems");
+  let itemPrice = document.getElementById("itemPrice");
+  let edititemPrice = document.getElementById("edititemPrice");
+  let total = document.getElementById("total");
+
+  let luggage = [];
+
+  editItem.style.display = "none";
+
+  function tabuletItems() {
+    let myToDo = {
+      foodItems: foodItems.value,
+      itemPrice: itemPrice.value,
+      purchased: ``
+    };
+    if (foodItems.value == "" || itemPrice.value == "") {
+      alert("A field is empty");
+      return;
+    } else {
+      luggage.push(myToDo);
+      dispTable();
+    }
+  }
+  
+  dispTable()
+
+  function dispTable() {
+    let y = 0;
+    let n = 0;
+    document.getElementById("tbody").innerHTML = "";
+
+    luggage.forEach((el) => {
+      document.getElementById("tbody").innerHTML += `
+         <tr>
+            <td>${el.foodItems}</td>
+            <td>${Number(el.itemPrice)}</td>
+            <td><input class='purchase' value='${
+              el.itemPrice
+            }' type="checkbox"></td>
+            <td>
+                <button id='${n++}' onclick="showEditDiv(event)">Edit</button>    
+                <button id='${y++}' onclick="deleteValue(event)">Del</button>    
+            </td>
+        </tr>`;
+    });
+
+    let inputs = document.querySelectorAll(".purchase");
+    inputs.forEach((input) => {
+      input.addEventListener("click", (event) => {
+        let el = event.target;
+        console.log(el);
+        if (el.checked) {
+          total.innerHTML = totalValue - Number(el.value);
+          totalValue = totalValue - Number(el.value);
+        } else {
+          totalValue = totalValue + Number(el.value);
+          total.innerHTML = totalValue;
+        }
+      });
+    });
+
+    let totalValue = luggage.reduce((a, b) => {
+      return a + Number(b.itemPrice);
+    }, 0);
+    total.innerHTML = totalValue;
+    console.log(totalValue);
+  }
+
+  function showEditDiv(event) {
+    el = event.target;
+    console.log(el);
+    index = Number(el.id);
+    console.log(index);
+    addItem.style.display = "none";
+    editItem.style.display = "block";
+  }
+
+  function changeValue() {
+    let data = {
+      foodItems: editfoodItems.value,
+      itemPrice: edititemPrice.value,
+    };
+
+    luggage.splice(index, 1, data);
+    dispTable();
+  }
+
+  function deleteValue(event) {
+    el = event.target;
+    index = Number(el.id);
+    console.log(index);
+
+    luggage.splice(index, 1);
+    dispTable();
+  }
+</script>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        main{
+            width:270px;
+            height:80vh;
+            background-color:navy;
+            overflow-y:scroll;
+        }
+        table,
+    th,
+    td {
+        padding:px;
+        border: 2px solid black;
+        border-collapse: collapse;
+    }
+    .select{
+        display: flex;
+        flex-wrap: wrap;
+       gap:20px;
+       justify-content: center;
+       align-items: center;
+       margin-top:20px;
+    }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="select">
+            <select name="" id="provider">
+                <option value="">Select a Provider</option>
+                <option value="GLO">glo</option>
+            </select>
+            <select name="" id="Amount">
+                <option value="">Amount</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+            </select>
+
+            <button onclick="generator()">Generate Pins</button>
+            <div id="dispPin"></div>
+        </div>
+
+        <section>
+            <input id="loadInput" type="text">
+            <button onclick="loadAirtime()">Load airtime</button>
+        </section>
+
+        <h1>GLO Balance: <span id="balglo"></span></h1>
+
+        <section>
+            <table>
+                <thead>
+                    <th>Pin</th>
+                    <th>Status</th>
+                    <th>Provider</th>
+                    <th>Amount</th>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </section>
+        
+    </main>
+</body>
+</html>
+<script>
+    let loadInput = document.getElementById('loadInput')
+    let Amount = document.getElementById('Amount')
+    let provider = document.getElementById('provider')
+    let gottenPins = JSON.parse(localStorage.getItem('cards'))
+    pins = ''
+    
+    //function for to generater pins
+    function generator(){
+        for (let index = 0; index < 10; index++) {
+            let random = Math.floor(Math.random()*10)
+            pins += random
+        }
+        let cards = {
+            pin: pins,
+            used: false,
+            provider: provider.value,
+            Amount: Amount.value
+        }
+        if (gottenPins == null) {
+            gottenPins = []
+            gottenPins.push(cards)
+            localStorage.setItem('cards' , JSON.stringify(gottenPins))
+            dispCards()
+            pins = ''
+        } else {
+          
+            gottenPins.push(cards)
+            localStorage.setItem('cards' , JSON.stringify(gottenPins))
+            dispCards()
+            pins = ''
+        }
+       
+    }
+
+    dispCards()
+
+    // function for display card inside table
+    function dispCards() {
+       document.getElementById('tbody').innerHTML = ''
+        let gottenPins = JSON.parse(localStorage.getItem('cards'))
+        gottenPins.forEach((el,i) => {
+            document.getElementById('tbody').innerHTML += `<tr>
+                <td>
+                        <input id="copied${i}" value="${el.pin}" /> 
+                        <button onclick="copyPin(${i})">c</button>   
+                    </td>
+                    <td>${el.used}</td>
+                    <td>${el.provider}</td>
+                    <td>${el.Amount}</td>
+                </tr>`
+        });
+    }
+        // function for copy
+     function copyPin(i){
+        let pinVal = document.getElementById(`copied${i}`).value;
+        let copyText = document.getElementById(`copied${i}`)
+        copyText.select();
+        copyText.setSelectionRange(0,99999);
+         navigator.clipboard.writeText(pinVal);
+        alert("Copied")
+    }
+
+   
+        let balance = 0;
+    function loadAirtime(){
+        // let found = gottenPin.find((el) => el.pin === loadInput.value);
+        let balglo = document.getElementById('balglo')
+        let pins = document.getElementById("dispPin").innerHTML
+        if(!loadInput.value.startsWith("*311*") || !loadInput.value.endsWith("#") || !loadInput.value.includes(pins)){
+            alert("Invalid Code")
+            loadInput.value = ''
+            
+        }else if (pins.user == true) {
+            alert("Airtime has already been used");
+        dispCards();
+        }
+        else{
+            pins.used = true;
+            alert(`${provider.value}voucher of ${Amount.value} has been recharged`)
+            loadInput.value = ''
+            dispPin.innerHTML = ''
+            balglo.innerHTML = `Yello, your airtime balance is: #${balance += Number(Amount.value)} `
+            
+        }
+    }
+</script>
+ 

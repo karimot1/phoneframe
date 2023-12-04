@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+            width:100%;
+        }
+    #frame{
+        width:270px;
+        height:85vh;
+        background-color:black;
+        border:6px solid black;
+        border-radius:20px;
+        position:relative;
+    }
+    #button{
+        width:5px;
+        height:70px;
+        background-color:black;
+        border-top-right-radius:30px;
+        border-bottom-right-radius:30px;
+        margin-top:40px;
+    }
+    .display{
+        display:flex;
+    }
+    #lockpage{
+        width:270px;
+        height:85vh;
+       background-image:url(lock.jpg);
+       background-repeat: no-repeat;
+       background-size: cover;
+        border-bottom-right-radius:20px;
+        border-bottom-left-radius:20px;
+        border-top-right-radius:20px;
+        border-top-left-radius:20px;
+       
+    }
+
+    #passcodePage{
+        width:270px;
+        height:85vh;
+        background-image:url(lock.jpg);
+        background-color: rgba(0, 0, 0, 0.39);
+        background-blend-mode: multiply;
+       background-repeat: no-repeat;
+       background-size: cover;
+        border-bottom-right-radius:20px;
+        border-bottom-left-radius:20px;
+        border-top-right-radius:20px;
+        border-top-left-radius:20px;
+     
+    }
+    #airtime{
+        width:270px;
+        height:85vh;
+        background-color:rgba(250, 235, 215, 0.37);
+        border-bottom-right-radius:20px;
+        border-bottom-left-radius:20px;
+        border-top-right-radius:20px;
+        border-top-left-radius:20px;
+     
+    }
+    #cartApp{
+        width:270px;
+        height:85vh;
+        background-color:rgba(250, 235, 215, 0.37);
+        border-bottom-right-radius:20px;
+        border-bottom-left-radius:20px;
+        border-top-right-radius:20px;
+        border-top-left-radius:20px;
+     
+    }
+    #home{
+        width:270px;
+        height:85vh;
+        background-image:url(unlock.jpg);
+       background-repeat: no-repeat;
+       background-size: cover;
+        border-bottom-right-radius:20px;
+        border-bottom-left-radius:20px;
+        border-top-right-radius:20px;
+        border-top-left-radius:20px;
+       position: relative;
+    }
+   #inputPin{
+        width:140px;
+        height:40px;
+        background:none;
+        border:0;
+        color:white;
+        font-size:35px;
+        text-align: center;
+        margin-left:60px;
+    }
+    small{
+        margin-left:70px;
+        color:rgba(255, 0, 0, 0.411);
+    }
+    .div button{
+        width: 70px;
+        border-radius:100px;
+        height:60px;
+        border:0;
+        background-color:rgba(226, 225, 225, 0.075);
+        color:white;
+        font-size:17px;
+        font-weight:400;
+    }
+    .div button:focus{
+        background-color:rgba(255, 255, 255, 0.548);
+    }
+    .div{
+        width:250px;
+        display: flex;
+        flex-wrap: wrap;
+        gap:5px;
+        margin-top:8px;
+        justify-content: space-around;
+    }
+    .cancel{
+        margin-top:20px;
+        width:250px;
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+       
+    }
+    .cancel button{
+        background:none;
+        border:0;
+        color: white;
+    }
+   #input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:270px;
+    height:100vh;
+   }
+   .dir{
+    background-color:rgba(0, 0, 0, 0.432);
+    width:270px;
+    height:50px;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:20px;
+    gap:20px;
+    position: absolute;
+    bottom:0; 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+   }
+   .image{
+    width:50px;
+    background-color:white;
+    height:45px;
+    border-radius:10px;
+   }
+   .icon{
+    width:55px;
+    height:50px;
+    background-color: white;
+    border-radius:10px;
+   }
+   .icon img{
+    width:55px;
+    height:50px;
+   }
+   #icon{
+    width:55px;
+    height:50px;
+    background-color: white;
+    border-radius:10px;
+   }
+   #icon img{
+    width:55px;
+    height:50px;
+   }
+   #cart{
+    width:55px;
+    height:50px;
+    background-color: white;
+    border-radius:10px;
+   }
+   #cart img{
+    width:55px;
+    height:50px;
+   }
+   .allmyicon{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+   width:270px;
+   height:30vh;
+    align-items: center;
+   }
+   #battery{
+    display: flex;
+    justify-content: space-between;
+   }
+   .mydates{
+    display: flex;
+    justify-content: space-between;
+   }
+   b{
+    color:white;
+   }
+   .si{
+    display: flex;
+   }
+   #time{
+    color:white;
+   }
+   #times{
+    color:white;
+   }
+   #timeCart{
+    color:white;
+   }
+
+   .main{
+            width:270px;
+            height:75vh;
+            margin-top:10px;
+            overflow-y:scroll;
+        }
+        .main::-webkit-scrollbar{
+            width:5px;
+            border-radius:20px;
+            height:5px;
+        }
+        .main::-webkit-scrollbar-thumb{
+            border-radius:20px;
+            background-color:whitesmoke;
+            height:5px;
+        }
+        table,th,td {
+        padding:px;
+        border: 2px solid black;
+        border-collapse: collapse;
+    }
+    table{
+        margin-top:20px;
+    }
+    .select{
+        display: flex;
+        flex-wrap: wrap;
+       gap:20px;
+       justify-content: center;
+       align-items: center;
+       margin-top:20px;
+    }
+    .text{
+        margin-left:40px;
+       text-align:center;
+       color:white;
+    }
+     .butt{
+        background:none;
+        border:0;
+        margin-top:10px;
+    }
+
+    .select button{
+        width:160px;
+        height:25px;
+        background-color:antiquewhite;
+        box-shadow:3px 3px 3px rgba(0, 0, 0, 0.212);
+        border:0;
+        border-radius:6px;
+        font-size:20px;
+        font-weight: 400;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .select button:hover{
+        background-color: rgba(250, 235, 215, 0.466);
+    }
+    .select select{
+        background-color:rgba(250, 235, 215, 0.637);
+    }
+    .main h4{
+        text-align: center;
+        font-size:20px;
+        font-weight: 400;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    #section h2{
+        font-size:20px;
+        font-weight: 400;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    #section{
+        margin-top:10px;
+        margin-left:5px;
+    }
+    
+    table input{
+        width:80px;
+    }
+    table button{
+        width:20px;
+    }
+     
+    #tables input{
+        width:20px;
+    }
+    #tables button{
+        width:50px;
+    }
+    
+    #table{
+        margin-left:3px;
+    }
+    .ptag p{
+        color:white;
+        text-align: center;
+    }
+    .dates{
+        display: flex;
+       
+    }
+    #list{
+        margin-top:10px;
+    }
+    #addItem {
+        margin-top:10px;
+        margin-left:10px;
+    }
+    #addItem input{
+        width:200;
+        height:30px;
+        background-color:azure;
+        border:0;
+    }
+    #addItem input:focus{
+        outline:none;
+    }
+    #editItem {
+        margin-top:10px;
+        margin-left:10px;
+    }
+    #editItem input{
+        width:200;
+        height:30px;
+        background-color:azure;
+        border:0;
+    }
+    #editItem input:focus{
+        outline:none;
+    }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="display">
+       <div id="frame">
+        <div id="lockpage">
+            <div id="passcodePage">
+                <div id="home">
+                    <!-- airtime generator -->
+                    <div id="airtime">
+                       <div class="mydates">
+                         <div class="dates">
+                            <img src="si2.png" alt="" width="20px" height="20">
+                            <b>glo</b>
+                         </div>
+                         <p id="times"></p>
+                        <img src="sat2.png" alt="" width="20px" height="20">
+                        </div>
+                    <button class="butt" onclick="arrow()"><img src="arrow.png" alt="" width="25px" height="10px"><span>Home</span></button>
+                        <div class="main">
+                            <h4>GLO Airtime generator</h4>
+                            <div class="select">
+                                <select name="" id="provider">
+                                    <option value="">Select a Provider</option>
+                                    <option value="GLO">glo</option>
+                                </select>
+                                <select name="" id="Amount">
+                                    <option value="">Amount</option>
+                                    <option value="100">100</option>
+                                    <option value="200">200</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                </select>
+                    
+                                <button onclick="generator()">Generate Pins</button>
+                                <div id="dispPin"></div>
+                            </div>
+                    
+                            <section id="section">
+                                <h2>Load Airtime</h2>
+                                <input id="loadInput" type="text">
+                                <button onclick="loadAirtime()">Load airtime</button>
+                            </section>
+                    
+                            <h1>GLO Balance: <span id="balglo"></span></h1>
+                    
+                            <section id="table">
+                                <table>
+                                    <thead>
+                                        <th>Pin</th>
+                                        <th>Status</th>
+                                        <th>Provider</th>
+                                        <th>Amount</th>
+                                    </thead>
+                                    <tbody id="tbody">
+                    
+                                    </tbody>
+                                </table>
+                            </section>
+                            
+                        </div>
+                    </div>
+                    <!-- shoppinglist -->
+                    <div id="cartApp">
+                        <div class="mydates">
+                            <div class="dates">
+                               <img src="si2.png" alt="" width="20px" height="20">
+                               <b>glo</b>
+                            </div>
+                            <p id="timeCart"></p>
+                           <img src="sat2.png" alt="" width="20px" height="20">
+                           </div>
+                       <button class="butt" onclick="arrowCart()"><img src="arrow.png" alt="" width="25px" height="10px"><span>Home</span></button>
+                       <div id="list">
+                        <div id="addItem">
+                          <h3>Add item</h3><br>
+                          <input id="foodItems" type="text" /> <br /><br />
+                          <input id="itemPrice" type="number" /> <br /><br />
+                          <button onclick="tabuletItems()">Submit</button> <br /><br />
+                        </div>
+                    
+                        <div id="editItem">
+                          <h3>Edit item</h3> <br>
+                          <input id="editfoodItems" type="text" /> <br /><br />
+                          <input id="edititemPrice" type="text" /> <br /><br />
+                          <button onclick="changeValue()">Submit</button> <br /><br />
+                        </div>
+                    
+                        <!-- <input type="checkbox"> -->
+                        <h5>Total: <span id="total"></span></h5>
+                        <table id="tables">
+                          <thead id="thead">
+                            <th>Food Item</th>
+                            <th>Item Price</th>
+                            <th>Purchased</th>
+                            <th>Actions</th>
+                          </thead>
+                          <tbody id="tbodyfood"></tbody>
+                        </table>
+                        </div>
+                    </div>
+                    <div id="all">
+                    <div id="battery">
+                        <div class="si">
+                        <img src="si2.png" alt="" width="20px" height="20">
+                        <b>glo</b>
+                        </div>
+                        <p id="time"></p>
+                        <img src="sat2.png" alt="" width="20px" height="20">
+                    </div>
+                    <div class="allmyicon">
+                        <div class="ptag">
+                        <div class="icon">
+                            <img  src="app.png" alt="">
+
+                        </div>
+                        <p>note</p>
+                        </div>
+                        <div class="ptag">
+                        <div class="icon">
+                            <img src="note (2).png" alt="">
+                        </div>
+                        <p>Appstore</p>
+                        </div>
+                        <div class="ptag">
+                        <div id="icon">
+                            <img  src="glo.png" alt="">
+                        </div>
+                        <p>Glo</p>
+                        </div>
+                        <div class="ptag">
+                        <div class="icon">
+                            <img src="settings.png" alt="">
+                        </div>
+                        <p>Setting</p>
+                        </div>
+                        <div class="ptag">
+                        <div class="icon">
+                            <img src="whatapp.png" alt="">
+                        </div>
+                        <p>Whatsapp</p>
+                        </div>
+                        <div class="ptag">
+                        <div id="cart">
+                            <img src="cart.png" alt="">
+                        </div>
+                        <p>Mylist</p>
+                        </div>
+                    </div>
+
+                    <div class="dir">
+                        <div class="image">
+                            <img src="phonecall.png" alt="" width="50px" height=45x;>
+                        </div>
+                        <div class="image">
+                            <img src="safari.png" alt=""width="50px"height=45px;>
+                        </div>
+                        <div class="image">
+                            <img src="message.png" alt=""width="50px" height=45px;>
+                        </div>
+                        <div class="image">
+                            <img src="calculate.png" alt=""width="50px" height=45px;>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="input">
+                    <div class="all">
+                    <div class="error">
+                        <small class="text">your pins should not more than 6</small>
+                <input id="inputPin" type="password" name="password"><br><br>
+                <small id="Error"></small>
+                    </div>
+                <div class="div">
+               
+                <button onclick="numbers(1)">1</button>
+                <button onclick="numbers(2)">2</button>
+                <button onclick="numbers(3)">3</button>
+                <button onclick="numbers(4)">4</button>
+                <button onclick="numbers(5)">5</button>
+                <button onclick="numbers(6)">6</button>
+                <button onclick="numbers(7)">7</button>
+                <button onclick="numbers(8)">8</button>
+                <button onclick="numbers(9)">9</button>
+                <button onclick="numbers(0)">0</button>
+                </div>
+                <div class="cancel">
+                <button onclick="cancel()">cancel</button>
+                <button id="done">Done</button>
+            </div>
+                </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        
+       </div> 
+       <div id="button">
+
+       </div>
+       </div>
+    </main>
+</body>
+</html>
+<script>
+    let frame = document.getElementById('frame')
+    let button = document.getElementById('button')
+    let lockpage = document.getElementById('lockpage')
+    let passcodePage = document.getElementById('passcodePage')
+    let home = document.getElementById('home')
+    let input = document.getElementById('input')
+    let cartApp = document.getElementById('cartApp')
+    lockpage.style.display = 'none'
+    home.style.display = 'none'
+    cartApp.style.display = 'none'
+    let framep;
+    let airtime = document.getElementById('airtime')
+    airtime.style.display = 'none'
+    button.addEventListener('click' ,function () {
+        // lockpage.style.display = 'block'
+        if (framep == 1) {
+            lockpage.style.display = 'block'
+            framep = 0
+        } else {
+            lockpage.style.display = 'none'
+            frame.style.background = 'black'
+            
+            framep = 1
+        }
+        
+    })
+    let lockp;
+    passcodePage.style.display = 'none'
+    lockpage.addEventListener('click', function(){
+        passcodePage.style.display = 'block'
+    })
+  
+    let inputPin = document.getElementById('inputPin')
+   
+    function numbers(value) {
+        inputPin.value += value
+    }
+    // function cancel(del) {
+    //     inputPin.splice(inputPin.value , 1)
+    // }
+    function cancel() {
+        inputPin.value = ''
+    }
+
+    let done = document.getElementById('done')
+    let ragexIn = /^[0-9]{6}$/
+   
+    done.addEventListener('click', function(event){
+        if (!ragexIn.test(inputPin.value)) {
+            document.getElementById('Error').innerHTML = 'incorrect password'
+            inputPin.value = ''
+        } else {
+            home.style.display = 'block'
+            time.innerHTML = `${date.getHours()}:${date.getMinutes()}`
+            input.style.display = 'none'
+
+        }
+    })
+
+    let icon = document.getElementById('icon')
+    let all = document.getElementById('all')
+   let icons ;
+    icon.addEventListener('click', function () {
+        airtime.style.display = 'block'
+        all.style.display = 'none'
+       document.getElementById('times').innerHTML = `${date.getHours()}:${date.getMinutes()}`
+    })
+     function arrow() {
+        if (icons == 1) {
+            airtime.style.display = 'block'
+            icon= 0
+        } else {
+            airtime.style.display = 'none'
+            all.style.display = 'block'
+            icon= 1;
+        }
+        
+    }
+    
+
+    let cart = document.getElementById('cart')
+    cart.addEventListener('click', function () {
+        cartApp.style.display = 'block'
+        all.style.display = 'none'
+        document.getElementById('timeCart').innerHTML = `${date.getHours()}:${date.getMinutes()}`
+    })
+    function arrowCart() {
+        if (icons == 1) {
+            cartApp.style.display = 'block'
+            icon= 0
+        } else {
+            cartApp.style.display = 'none'
+            all.style.display = 'block'
+            icon= 1;
+        }
+        
+    }
+
+    let time = document.getElementById('time')
+    let date = new Date()
+    
+
+    let loadInput = document.getElementById('loadInput')
+    let Amount = document.getElementById('Amount')
+    let provider = document.getElementById('provider')
+    let gottenPins = JSON.parse(localStorage.getItem('cards'))
+    pins = ''
+    
+    //function for to generater pins
+    function generator(){
+        for (let index = 0; index < 10; index++) {
+            let random = Math.floor(Math.random()*10)
+            pins += random
+        }
+        let cards = {
+            pin: pins,
+            used: false,
+            provider: provider.value,
+            Amount: Amount.value
+        }
+        if (gottenPins == null) {
+            gottenPins = []
+            gottenPins.push(cards)
+            localStorage.setItem('cards' , JSON.stringify(gottenPins))
+            dispCards()
+            pins = ''
+        } else {
+          
+            gottenPins.push(cards)
+            localStorage.setItem('cards' , JSON.stringify(gottenPins))
+            dispCards()
+            pins = ''
+        }
+       
+    }
+
+    dispCards()
+
+    // function for display card inside table
+    function dispCards() {
+       document.getElementById('tbody').innerHTML = ''
+        let gottenPins = JSON.parse(localStorage.getItem('cards'))
+        gottenPins.forEach((el,i) => {
+            document.getElementById('tbody').innerHTML += `<tr>
+                <td>
+                        <input id="copied${i}" value="${el.pin}" /> 
+                        <button onclick="copyPin(${i})">c</button>   
+                    </td>
+                    <td>${el.used}</td>
+                    <td>${el.provider}</td>
+                    <td>${el.Amount}</td>
+                </tr>`
+        });
+    }
+        // function for copy
+     function copyPin(i){
+        let pinVal = document.getElementById(`copied${i}`).value;
+        let copyText = document.getElementById(`copied${i}`)
+        copyText.select();
+        copyText.setSelectionRange(0,99999);
+         navigator.clipboard.writeText(pinVal);
+        alert("Copied")
+    }
+
+   
+    let balance = 0;
+    function loadAirtime(){
+        // let found = gottenPin.find((el) => el.pin === loadInput.value);
+        let balglo = document.getElementById('balglo')
+        let pins = document.getElementById("dispPin").innerHTML
+        if(!loadInput.value.startsWith("*311*") || !loadInput.value.endsWith("#") || !loadInput.value.includes(pins)){
+            alert("Invalid Code")
+            loadInput.value = ''
+            
+        }else if (pins.user == true) {
+            alert("Airtime has already been used");
+        dispCards();
+        }
+        else{
+            pins.used = true;
+            alert(`${provider.value}voucher of ${Amount.value} has been recharged`)
+            loadInput.value = ''
+            dispPin.innerHTML = ''
+            balglo.innerHTML = `Yello, your airtime balance is: #${balance += Number(Amount.value)} `
+            
+        }
+    }
+
+
+    let index;
+  let addItem = document.getElementById("addItem");
+  let editItem = document.getElementById("editItem");
+  let foodItems = document.getElementById("foodItems");
+  let editfoodItems = document.getElementById("editfoodItems");
+  let itemPrice = document.getElementById("itemPrice");
+  let edititemPrice = document.getElementById("edititemPrice");
+  let total = document.getElementById("total");
+
+  let luggage = [];
+
+  editItem.style.display = "none";
+
+  function tabuletItems() {
+    let myToDo = {
+      foodItems: foodItems.value,
+      itemPrice: itemPrice.value,
+      purchased: ``
+    };
+    if (foodItems.value == "" || itemPrice.value == "") {
+      alert("A field is empty");
+      return;
+    } else {
+      luggage.push(myToDo);
+      dispTable();
+    }
+  }
+  
+  dispTable()
+
+  function dispTable() {
+    let y = 0;
+    let n = 0;
+    document.getElementById("tbodyfood").innerHTML = "";
+
+    luggage.forEach((el) => {
+      document.getElementById("tbodyfood").innerHTML += `
+         <tr>
+            <td>${el.foodItems}</td>
+            <td>${Number(el.itemPrice)}</td>
+            <td><input class='purchase' value='${
+              el.itemPrice
+            }' type="checkbox"></td>
+            <td>
+                <button id='${n++}' onclick="showEditDiv(event)">Edit</button>    
+                <button id='${y++}' onclick="deleteValue(event)">Del</button>    
+            </td>
+        </tr>`;
+    });
+
+    let inputs = document.querySelectorAll(".purchase");
+    inputs.forEach((input) => {
+      input.addEventListener("click", (event) => {
+        let el = event.target;
+        console.log(el);
+        if (el.checked) {
+          total.innerHTML = totalValue - Number(el.value);
+          totalValue = totalValue - Number(el.value);
+        } else {
+          totalValue = totalValue + Number(el.value);
+          total.innerHTML = totalValue;
+        }
+      });
+    });
+
+    let totalValue = luggage.reduce((a, b) => {
+      return a + Number(b.itemPrice);
+    }, 0);
+    total.innerHTML = totalValue;
+    console.log(totalValue);
+  }
+
+  function showEditDiv(event) {
+    el = event.target;
+    console.log(el);
+    index = Number(el.id);
+    console.log(index);
+    addItem.style.display = "none";
+    editItem.style.display = "block";
+  }
+
+  function changeValue() {
+    let data = {
+      foodItems: editfoodItems.value,
+      itemPrice: edititemPrice.value,
+    };
+
+    luggage.splice(index, 1, data);
+    dispTable();
+  }
+
+  function deleteValue(event) {
+    el = event.target;
+    index = Number(el.id);
+    console.log(index);
+
+    luggage.splice(index, 1);
+    dispTable();
+  }
+</script>
