@@ -82,6 +82,16 @@
         border-top-left-radius:20px;
      
     }
+    #myCamera{
+        width:270px;
+        height:85vh;
+        background-color:rgba(250, 235, 215, 0.37);
+        border-bottom-right-radius:20px;
+        border-bottom-left-radius:20px;
+        border-top-right-radius:20px;
+        border-top-left-radius:20px;
+     
+    }
     #home{
         width:270px;
         height:85vh;
@@ -127,6 +137,7 @@
         flex-wrap: wrap;
         gap:5px;
         margin-top:8px;
+        margin-left:10px;
         justify-content: space-around;
     }
     .cancel{
@@ -198,12 +209,41 @@
     width:55px;
     height:50px;
    }
+   #face{
+    width:55px;
+    height:50px;
+    background-color: white;
+    border-radius:10px;
+   }
+   #face img{
+    width:55px;
+    height:50px;
+   }
+   #camera{
+    width:55px;
+    height:50px;
+    border-radius:10px;
+   }
+   #camera img{
+    width:55px;
+    height:50px;
+   }
+   #clock{
+    width:55px;
+    height:50px;
+    background-color: white;
+    border-radius:10px;
+   }
+   #clock img{
+    width:55px;
+    height:50px;
+   }
    .allmyicon{
     display: flex;
     flex-wrap:wrap;
     justify-content: space-between;
    width:270px;
-   height:30vh;
+   height:40vh;
     align-items: center;
    }
    #battery{
@@ -211,6 +251,10 @@
     justify-content: space-between;
    }
    .mydates{
+    display: flex;
+    justify-content: space-between;
+   }
+   .cameradates{
     display: flex;
     justify-content: space-between;
    }
@@ -227,6 +271,9 @@
     color:white;
    }
    #timeCart{
+    color:white;
+   }
+   #timecamera{
     color:white;
    }
 
@@ -334,11 +381,11 @@
     #list{
         margin-top:10px;
     }
-    #addItem {
+    #additems {
         margin-top:10px;
         margin-left:10px;
     }
-    #addItem input{
+    #additems input{
         width:200;
         height:30px;
         background-color:azure;
@@ -360,6 +407,54 @@
     #editItem input:focus{
         outline:none;
     }
+
+
+    #gall {
+            width:270px;
+            height:70vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 5.5px;
+            /* position: absolute; */
+          
+            z-index: -1;
+
+        }
+
+        #pix {
+            width: 100%;
+            height:70vh;
+            display: flex;
+            flex-wrap: wrap;
+            overflow-y: scroll;
+            overflow-x: none;
+            background-color: aliceblue;
+            margin-top: 40px;
+            /* position: absolute;   */
+        }
+
+        #pix::-webkit-scrollbar {
+            display: none;
+        }
+        #pix img{
+            width:90px;
+        }
+        video{
+        width:270px;
+        height:350px;
+    }
+    .carts{
+        width: 270px;
+        height:70vh;
+        overflow-y: scroll;
+        overflow-x: none;
+
+    }
+    .carts::-webkit-scrollbar {
+            display: none;
+        }
+    
+   
     </style>
 </head>
 <body>
@@ -434,8 +529,9 @@
                            <img src="sat2.png" alt="" width="20px" height="20">
                            </div>
                        <button class="butt" onclick="arrowCart()"><img src="arrow.png" alt="" width="25px" height="10px"><span>Home</span></button>
+                       <div class="carts"> 
                        <div id="list">
-                        <div id="addItem">
+                        <div id="additems">
                           <h3>Add item</h3><br>
                           <input id="foodItems" type="text" /> <br /><br />
                           <input id="itemPrice" type="number" /> <br /><br />
@@ -462,6 +558,33 @@
                         </table>
                         </div>
                     </div>
+                    </div>
+                    <!-- camera -->
+                    <div id="myCamera">
+                        <div class="cameradates">
+                            <div class="dates">
+                               <img src="si2.png" alt="" width="20px" height="20">
+                               <b>glo</b>
+                            </div>
+                            <p id="timecamera"></p>
+                           <img src="sat2.png" alt="" width="20px" height="20">
+                           </div>
+                           <button class="butt"  id="arrowscamera"  onclick="arrowCamera()"><img src="arrow.png" alt="" width="25px" height="10px"><span>Home</span></button>
+                           <button class="butt" id="arrowsgallary" onclick="arrowgallary()"><img src="arrow.png" alt="" width="25px" height="10px"><span>Home</span></button>
+                           <div id="myGallery">
+                            <video autoplay width=270px; height=420px;  id="video"></video>
+                            <canvas width="70" height="70" id="canvas"></canvas>
+                            <button onclick="takePic()">canvas</button>
+                            </div>
+                            <div class="allgalari">
+                            <div id="gall">
+                                <div id="pix">
+                        
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+
                     <div id="all">
                     <div id="battery">
                         <div class="si">
@@ -509,6 +632,26 @@
                         </div>
                         <p>Mylist</p>
                         </div>
+                        <div class="ptag">
+                            <div id="face">
+                                <img src="facebook.png" alt="">
+                            </div>
+                            <p>Facebook</p>
+                            </div>
+                            <div class="ptag">
+                                <div id="clock">
+                                    <img src="clock.png" alt="">
+                                </div>
+                                <p>Mylist</p>
+                                </div>
+
+                                <div class="ptag">
+                                    <div onclick="startCam()" id="camera">
+                                        <img src="camera.png" alt="">
+                                    </div>
+                                    <p>Mylist</p>
+                                    </div>
+    
                     </div>
 
                     <div class="dir">
@@ -574,6 +717,8 @@
     let home = document.getElementById('home')
     let input = document.getElementById('input')
     let cartApp = document.getElementById('cartApp')
+    let myCamera = document .getElementById('myCamera')
+    myCamera.style.display = 'none'
     lockpage.style.display = 'none'
     home.style.display = 'none'
     cartApp.style.display = 'none'
@@ -651,8 +796,8 @@
     cart.addEventListener('click', function () {
         cartApp.style.display = 'block'
         all.style.display = 'none'
-        document.getElementById('timeCart').innerHTML = `${date.getHours()}:${date.getMinutes()}`
-    })
+       document.getElementById('timeCart').innerHTML = `${date.getHours()}:${date.getMinutes()}`
+    }) 
     function arrowCart() {
         if (icons == 1) {
             cartApp.style.display = 'block'
@@ -756,9 +901,11 @@
     }
 
 
+   // shopping list
     let index;
-  let addItem = document.getElementById("addItem");
-  let editItem = document.getElementById("editItem");
+
+  let additems = document.getElementById("additems");
+  let editItems = document.getElementById("editItem");
   let foodItems = document.getElementById("foodItems");
   let editfoodItems = document.getElementById("editfoodItems");
   let itemPrice = document.getElementById("itemPrice");
@@ -767,7 +914,7 @@
 
   let luggage = [];
 
-  editItem.style.display = "none";
+  editItems.style.display = "none";
 
   function tabuletItems() {
     let myToDo = {
@@ -830,11 +977,10 @@
 
   function showEditDiv(event) {
     el = event.target;
-    console.log(el);
     index = Number(el.id);
-    console.log(index);
-    addItem.style.display = "none";
-    editItem.style.display = "block";
+     editItems.style.display = "block";
+      additems.style.display = "none";
+   
   }
 
   function changeValue() {
@@ -855,4 +1001,96 @@
     luggage.splice(index, 1);
     dispTable();
   }
+
+
+//   let camera = document.getElementById('camera')
+//   camera.addEventListener('click', function(){
+//     myCamera.style.display = 'block'
+//     all.style.display = 'none'
+//     document.getElementById('timecamera').innerHTML = `${date.getHours()}:${date.getMinutes()}`
+//   })
+
+  function arrowCamera() {
+        if (icons == 1) {
+            myCamera.style.display = 'block'
+            icon= 0
+        } else {
+            myCamera.style.display = 'none'
+            all.style.display = 'block'
+            icon= 1;
+        }
+        
+    }
+    let arrowsgallary = document.getElementById('arrowsgallary')
+    let arrowscamera = document.getElementById('arrowscamera')
+    arrowsgallary.style.display = 'none'
+    function arrowgallary() {
+        if (icons == 1) {
+            gall.style.display = 'block'
+            arrowscamera.style.display = 'none'
+            icon= 0
+        } else {
+            arrowscamera.style.display = 'block'
+            arrowsgallary.style.display = 'none'
+            gall.style.display = 'none'
+            myCamera.style.display = 'block'
+            icon= 1;
+        }
+        
+    }
+    let video = document.getElementById('video')
+    let canvas = document.getElementById('canvas')
+    let myImage = document.getElementById('myImage')
+    let gall = document.getElementById("gall")
+    let pix = document.getElementById("pix")
+    let myGallery = document.getElementById('myGallery')
+
+    gall.style.display = 'none'
+
+    let imgs = JSON.parse(localStorage.getItem("pis")) || []
+
+
+
+    async function startCam() {
+        myCamera.style.display = 'block'
+    all.style.display = 'none'
+    document.getElementById('timecamera').innerHTML = `${date.getHours()}:${date.getMinutes()}`
+        let anny = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        video.srcObject = anny;
+        console.log(anny)
+
+    }
+
+    function takePic() {
+     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height)
+        let url = canvas.toDataURL('imgs/jpg')
+        console.log(url)
+        imgs.push(url)
+        localStorage.setItem("pis", JSON.stringify(imgs))
+     
+    }
+
+    canvas.addEventListener('click', function () {
+        arrowsgallary.style.display = 'block'
+        arrowscamera.style.display = 'none'
+        myGallery.style.display = 'none'
+        gall.style.display = 'block'
+    })
+    
+    
+
+    gallery()
+
+    function gallery(){
+
+    // home.style.display = "none"
+    // phone.style.display = "block"
+    // gall.style.zIndex = 20
+
+    imgs.forEach(element => {
+    pix.innerHTML += `<img src="${element}" alt="">`
+});
+
+
+}
 </script>
